@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 // import { Mission } from '../types';
 import { BsGiftFill } from 'react-icons/bs';
 import { FaStar, FaCoins } from 'react-icons/fa';
 
 
 const MissionCard = ({ mission, onClick }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const progressPercentage = (mission.progressCurrent / mission.progressTotal) * 100;
 
   const handleCompleteClick = (e) => {
@@ -19,12 +20,12 @@ const MissionCard = ({ mission, onClick }) => {
       className="bg-white rounded-2xl shadow-md overflow-hidden cursor-pointer transition-transform hover:scale-105 duration-300 flex flex-col h-full"
       onClick={onClick}
     >
-      <div className="bg-teal-800 text-white p-4 flex justify-between items-start rounded-t-2xl">
+      <div className="text-white p-4 flex justify-between items-start rounded-t-2xl" style={{backgroundColor: '#0c4d6b'}}>
         <div>
           <h3 className="font-bold text-lg">{mission.title}</h3>
         </div>
         <div className="flex gap-2">
-          <div className="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center text-yellow-300" aria-label="Gift Icon">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center text-yellow-300" aria-label="Gift Icon" style={{backgroundColor: '#094a66'}}>
             <BsGiftFill />
           </div>
           <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center text-white" aria-label="Star Icon">
@@ -57,7 +58,13 @@ const MissionCard = ({ mission, onClick }) => {
         </div>
         <button 
           onClick={handleCompleteClick}
-          className="w-full bg-teal-600 text-white font-bold py-3 rounded-lg hover:bg-teal-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500 mt-4"
+          className="w-full text-white font-bold py-3 rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 mt-4"
+          style={{
+            backgroundColor: isHovered ? '#094a66' : '#0c4d6b',
+            '--tw-ring-color': '#0c4d6b'
+          }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           Complete
         </button>

@@ -15,7 +15,7 @@ const WalletHomeView= ({ onBack, onSeeAllRedeem, onSeeAllMissions, onRedemptionC
     <div>
         <div className=" backdrop-blur-sm w-full sticky">
             {/* <Header title="Wallet" onBackClick={onBack} showIcons={true} /> */}
-            <Header title="Wallet" onBack={onBack} />
+            <Header onBack={onBack} />
         </div>
         
         <main className="flex-grow p-4 sm:p-4 bg-gray-50 space-y-8">
@@ -23,7 +23,13 @@ const WalletHomeView= ({ onBack, onSeeAllRedeem, onSeeAllMissions, onRedemptionC
             <section>
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-bold text-gray-800">Redeem Points</h2>
-                    <button onClick={onSeeAllRedeem} className="font-semibold text-teal-600 hover:text-teal-800 transition-colors">See All</button>
+                    <button 
+                        onClick={onSeeAllRedeem} 
+                        className="font-semibold transition-colors hover:opacity-80" 
+                        style={{color: '#0c4d6b'}}
+                    >
+                        See All
+                    </button>
                 </div>
                 <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide relative -mx-4 sm:-mx-6 px-4 sm:px-6 ">
                     {REDEMPTION_OFFERS.slice(0, 4).map((offer) => <RedemptionCard key={offer.id} offer={offer} onClick={() => onRedemptionClick(offer.id)} />)}
@@ -32,7 +38,13 @@ const WalletHomeView= ({ onBack, onSeeAllRedeem, onSeeAllMissions, onRedemptionC
             <section>
                 <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-bold text-gray-800">Complete Missions</h2>
-                    <button onClick={onSeeAllMissions} className="font-semibold text-teal-600 hover:text-teal-800 transition-colors">See All</button>
+                    <button 
+                        onClick={onSeeAllMissions} 
+                        className="font-semibold transition-colors hover:opacity-80" 
+                        style={{color: '#0c4d6b'}}
+                    >
+                        See All
+                    </button>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {MISSIONS.slice(0, 2).map((mission) => <MissionCard key={mission.id} mission={mission} onClick={() => onMissionClick(mission.id)} />)}
@@ -49,7 +61,7 @@ const PointsListView = ({ initialTab, onBack, onRedemptionClick, onMissionClick 
     return (
         <div className="flex flex-col">
             <div className="bg-white sticky top-0 z-10">
-                <Header title="Wallet Details" onBack={onBack} />
+                <Header onBack={onBack} />
                 <Tabs activeTab={activeTab} setActiveTab={setActiveTab} />
             </div>
             <main className="flex-grow p-4 sm:p-6 bg-gray-50">
@@ -82,13 +94,13 @@ const DetailView= ({ type, itemId, onBack }) => {
     ];
 
     if (!item) {
-        return (<div><Header title="Wallet Details" onBack={onBack} showIcons={false} /><p className="p-8 text-center">Item not found.</p></div>);
+        return (<div><Header onBack={onBack} /><p className="p-8 text-center">Item not found.</p></div>);
     }
 
     return (
         <div className="flex flex-col h-180">
             <div className="bg-white sticky top-0 z-10">
-            <Header title="Wallet Details" onBack={onBack} showIcons={false} />
+            <Header onBack={onBack} />
             </div>
             <main className="flex-grow p-4 sm:p-6 lg:p-8 bg-gray-50">
                 <div className="w-full max-w-4xl2 mx-auto">
